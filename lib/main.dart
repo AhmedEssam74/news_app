@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:news/home_screen.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:news/screens/home/home_screen.dart';
+import 'package:news/theme/base_theme.dart';
+import 'package:news/theme/dark_theme.dart';
+import 'package:news/theme/light_theme.dart';
 
 void main() {
   runApp(const NewsApp());
@@ -10,11 +14,23 @@ class NewsApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: HomeScreen.routeName,
-      routes: {
-        HomeScreen.routeName: (context) => const HomeScreen(),
+    BaseTheme lightTheme = LightTheme();
+    BaseTheme darkTheme = DarkTheme();
+    return ScreenUtilInit(
+      designSize: const Size(393, 852),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (_, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: lightTheme.themeData,
+          darkTheme: darkTheme.themeData,
+          themeMode: ThemeMode.light,
+          initialRoute: HomeScreen.routeName,
+          routes: {
+            HomeScreen.routeName: (context) => const HomeScreen(),
+          },
+        );
       },
     );
   }
