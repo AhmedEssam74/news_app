@@ -1,13 +1,17 @@
 class NewsResponse {
   String? status;
+  String? code;
+  String? message;
   int? totalResults;
   List<Articles>? articles;
 
-  NewsResponse({this.status, this.totalResults, this.articles});
+  NewsResponse({this.status, this.totalResults, this.articles , this.code , this.message});
 
   NewsResponse.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     totalResults = json['totalResults'];
+    code = json['code'];
+    message = json['message'];
     if (json['articles'] != null) {
       articles = <Articles>[];
       json['articles'].forEach((v) {

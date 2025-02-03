@@ -1,3 +1,4 @@
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news/screens/home/home_screen.dart';
@@ -5,7 +6,10 @@ import 'package:news/theme/base_theme.dart';
 import 'package:news/theme/dark_theme.dart';
 import 'package:news/theme/light_theme.dart';
 
+import 'cubit/cubit_observer.dart';
+
 void main() {
+  Bloc.observer = MyBlocObserver();
   runApp(const NewsApp());
 }
 
