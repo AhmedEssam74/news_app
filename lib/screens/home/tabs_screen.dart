@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:news/cubit/cubit.dart';
-import 'package:news/cubit/states.dart';
+import 'package:news/core/repository/repo_implementation.dart';
 import '../../Widgets/news_widget_details.dart';
+import '../../core/cubit/cubit.dart';
+import '../../core/cubit/states.dart';
 
 class TabsScreen extends StatelessWidget {
   final String categoryName;
   final Function onTap;
 
-  const TabsScreen({super.key, required this.categoryName , required this.onTap});
+  const TabsScreen(
+      {super.key, required this.categoryName, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HomeCubit()..getSources(categoryName),
+      create: (context) => HomeCubit(HomeRepoImpl())..getSources(categoryName),
       child: BlocConsumer<HomeCubit, HomeStates>(listener: (context, state) {
         if (state is GetSourceLoadingState) {
           showDialog(
@@ -28,8 +30,8 @@ class TabsScreen extends StatelessWidget {
               ),
             ),
           );
-        } else
-          if (state is GetSourceErrorState) {
+          // Navigator.pop(context);
+        } else if (state is GetSourceErrorState) {
           showDialog(
             context: context,
             builder: (context) => AlertDialog(
@@ -37,16 +39,16 @@ class TabsScreen extends StatelessWidget {
                 'Error',
                 style: Theme.of(context).textTheme.titleLarge,
               ),
-              content: Text( "Something went wrong",
+              content: Text("Something went wrong",
                   style: Theme.of(context).textTheme.titleMedium),
               actions: [
                 ElevatedButton(
                   onPressed: () {
                     onTap();
-                    Navigator.pop(context);
+                    // Navigator.pop(context);
                   },
-                  child:
-                      Text("Go to home", style: Theme.of(context).textTheme.titleSmall),
+                  child: Text("Go to home",
+                      style: Theme.of(context).textTheme.titleSmall),
                 ),
               ],
             ),

@@ -1,12 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:news/core/routes/app_routes.dart';
 import 'package:news/screens/home/home_screen.dart';
 import 'package:news/theme/base_theme.dart';
 import 'package:news/theme/dark_theme.dart';
 import 'package:news/theme/light_theme.dart';
+import 'core/cubit/cubit_observer.dart';
 
-import 'cubit/cubit_observer.dart';
 
 void main() {
   Bloc.observer = MyBlocObserver();
@@ -31,9 +32,7 @@ class NewsApp extends StatelessWidget {
           darkTheme: darkTheme.themeData,
           themeMode: ThemeMode.light,
           initialRoute: HomeScreen.routeName,
-          routes: {
-            HomeScreen.routeName: (context) => const HomeScreen(),
-          },
+          onGenerateRoute: AppRoutes.onGenerateRoute,
         );
       },
     );

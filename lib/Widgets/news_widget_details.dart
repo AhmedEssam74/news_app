@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:news/cubit/cubit.dart';
-import 'package:news/cubit/states.dart';
+import '../core/cubit/cubit.dart';
+import '../core/cubit/states.dart';
 import 'news_item.dart';
 
 class NewsWidgetDetails extends StatelessWidget {
@@ -15,13 +15,11 @@ class NewsWidgetDetails extends StatelessWidget {
         if (state is GetNewsDataLoadingState) {
           showDialog(
             context: context,
-            builder: (context) => Center(
-              child: AlertDialog(
-                backgroundColor: Colors.transparent,
-                title: Center(
-                  child: CircularProgressIndicator(
-                    color: Theme.of(context).textTheme.titleLarge?.color,
-                  ),
+            builder: (context) => AlertDialog(
+              backgroundColor: Colors.transparent,
+              title: Center(
+                child: CircularProgressIndicator(
+                  color: Theme.of(context).textTheme.titleLarge?.color,
                 ),
               ),
             ),
@@ -35,7 +33,7 @@ class NewsWidgetDetails extends StatelessWidget {
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               content: Text(state.errorMessage ?? "Something went wrong",
-                  style: Theme.of(context).textTheme.titleMedium),
+                  style: Theme.of(context).textTheme.titleSmall),
               actions: [
                 ElevatedButton(
                   onPressed: () {
@@ -47,14 +45,29 @@ class NewsWidgetDetails extends StatelessWidget {
               ],
             ),
           );
-        } else if (state is GetNewsDataEmptyState) {
-          Center(
-            child: Text(
-              "No News Founded",
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-          );
+        } else if (state is GetNewsDataSuccessState) {
+          Navigator.pop(context);
         }
+        // else if (state is GetNewsDataEmptyState) {
+        //   showDialog(
+        //     context: context,
+        //     builder: (context) => AlertDialog(
+        //       title: Text(
+        //         'No News Founded',
+        //         style: Theme.of(context).textTheme.titleLarge,
+        //       ),
+        //       actions: [
+        //         ElevatedButton(
+        //           onPressed: () {
+        //             Navigator.pop(context);
+        //           },
+        //           child:
+        //           Text("OK", style: Theme.of(context).textTheme.titleLarge),
+        //         ),
+        //       ],
+        //     ),
+        //   );
+        // }
       },
       builder: (context, state) {
         var bloc = BlocProvider.of<HomeCubit>(context);
@@ -68,7 +81,7 @@ class NewsWidgetDetails extends StatelessWidget {
             separatorBuilder: (context, index) => SizedBox(
                   height: 16.h,
                 ),
-            itemCount: news.length ?? 0);
+            itemCount: news.length);
       },
     );
   }
