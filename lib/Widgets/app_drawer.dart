@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:news/core/routes/page_name_route.dart';
 import 'package:news/screens/home/home_screen.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -43,7 +44,7 @@ class AppDrawer extends StatelessWidget {
                       SizedBox(width: 8.0.w),
                       InkWell(
                         onTap: () {
-                          Navigator.pushNamed(context, HomeScreen.routeName);
+                          Navigator.pushNamed(context, PageRouteName.homeScreen);
                         },
                         child: Text(
                           'Go To Home',

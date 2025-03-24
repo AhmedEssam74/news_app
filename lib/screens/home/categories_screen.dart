@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news/screens/home/category_item.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  static const String routeName = "TabScreen";
+  // static const String routeName = "TabScreen";
   final Function onClickedCategory;
 
   CategoriesScreen({super.key, required this.onClickedCategory});
