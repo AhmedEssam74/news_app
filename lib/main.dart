@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news/core/routes/app_routes.dart';
+import 'package:news/core/routes/page_name_route.dart';
 import 'package:news/screens/home/home_screen.dart';
 import 'package:news/theme/base_theme.dart';
 import 'package:news/theme/dark_theme.dart';
@@ -31,7 +32,7 @@ class NewsApp extends StatelessWidget {
           theme: lightTheme.themeData,
           darkTheme: darkTheme.themeData,
           themeMode: ThemeMode.light,
-          initialRoute: HomeScreen.routeName,
+          initialRoute: PageRouteName.initial,
           onGenerateRoute: AppRoutes.onGenerateRoute,
         );
       },

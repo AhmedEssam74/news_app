@@ -4,7 +4,7 @@ import 'package:news/screens/home/categories_screen.dart';
 import 'package:news/screens/home/tabs_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  static const String routeName = " HomeScreen";
+  // static const String routeName = " HomeScreen";
 
   const HomeScreen({super.key});
 
