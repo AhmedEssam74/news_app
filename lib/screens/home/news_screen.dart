@@ -35,7 +35,7 @@ class _NewsScreenState extends State<NewsScreen> {
           }
           if (snapshot.hasError) {
             return Text(
-              'Something went wrong',
+              'Something went wrong ...',
               style: Theme.of(context).textTheme.titleLarge,
             );
           }
