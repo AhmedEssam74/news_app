@@ -53,7 +53,7 @@ class NewsItem extends StatelessWidget {
                 style: Theme.of(context).textTheme.bodySmall,
               ),
               Text(
-                article.publishedAt?.substring(0, 10) ?? "",
+                article.publishedAt?.split(" ").first ?? "",
                 style: Theme.of(context).textTheme.bodySmall,
               ),
             ],

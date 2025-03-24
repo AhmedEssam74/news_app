@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news/Widgets/app_drawer.dart';
 import 'package:news/screens/home/categories_screen.dart';
-import 'package:news/screens/home/news_screen.dart';
+import 'package:news/screens/home/tabs_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = " HomeScreen";
@@ -38,8 +38,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ? CategoriesScreen(
               onClickedCategory: onClickCategory,
             )
-          : NewsScreen(
+          : TabsScreen(
               categoryName: selectedCategory!,
+              onTap: getBackHome,
             ),
     );
   }
