@@ -8,7 +8,7 @@ abstract class AppRoutes {
     switch (settings.name) {
       case PageRouteName.initial:
         return MaterialPageRoute(builder: (context) => const SplashScreen());
-        case PageRouteName.homeScreen:
+      case PageRouteName.homeScreen:
         return MaterialPageRoute(builder: (context) => const HomeScreen());
       default:
         return MaterialPageRoute(builder: (context) => const SplashScreen());

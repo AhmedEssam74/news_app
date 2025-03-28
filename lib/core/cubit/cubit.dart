@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:news/core/cubit/states.dart';
 import 'package:news/core/repository/repository.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../models/news_response_model.dart';
 import '../../models/source_response_model.dart';
 
@@ -23,8 +24,8 @@ class HomeCubit extends Cubit<HomeStates> {
       emit(GetSourceLoadingState());
       sourcesResponse = await repo.getSources(categoryName);
       if (sourcesResponse!.status == "ok") {
-        await getNewsData();
         emit(GetSourceSuccessState());
+        await getNewsData();
       } else {
         emit(GetSourceErrorState());
       }
@@ -48,6 +49,15 @@ class HomeCubit extends Cubit<HomeStates> {
       }
     } catch (error) {
       emit(GetNewsDataErrorState(newResponse!.message ?? ""));
+    }
+  }
+
+  static Future<void> openLink(String url) async {
+    final Uri uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    } else {
+      throw "Could not launch $url";
     }
   }
 }

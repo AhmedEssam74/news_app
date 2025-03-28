@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import '../core/cubit/cubit.dart';
 import '../core/cubit/states.dart';
 import 'news_item.dart';
@@ -49,24 +50,17 @@ class NewsWidgetDetails extends StatelessWidget {
           Navigator.pop(context);
         }
         // else if (state is GetNewsDataEmptyState) {
-        //   showDialog(
-        //     context: context,
-        //     builder: (context) => AlertDialog(
-        //       title: Text(
+        //   Center(
+        //     child: Container(
+        //       width: 200,
+        //       height: 200,
+        //       child: Text(
         //         'No News Founded',
         //         style: Theme.of(context).textTheme.titleLarge,
         //       ),
-        //       actions: [
-        //         ElevatedButton(
-        //           onPressed: () {
-        //             Navigator.pop(context);
-        //           },
-        //           child:
-        //           Text("OK", style: Theme.of(context).textTheme.titleLarge),
-        //         ),
-        //       ],
         //     ),
         //   );
+        //   // Navigator.pop(context);
         // }
       },
       builder: (context, state) {
