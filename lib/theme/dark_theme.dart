@@ -14,7 +14,7 @@ class DarkTheme extends BaseTheme {
 
   @override
   // TODO: implement backGroundColor
-  Color get backGroundColor => const Color(0xff636262);
+  Color get backGroundColor => const Color(0xff8a2d2d);
 
 
   @override
