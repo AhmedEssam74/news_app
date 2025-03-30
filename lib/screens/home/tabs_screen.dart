@@ -37,17 +37,17 @@ class TabsScreen extends StatelessWidget {
             builder: (context) => AlertDialog(
               title: Text(
                 'Error',
-                style: Theme.of(context).textTheme.titleLarge,
+                style: Theme.of(context).textTheme.titleMedium,
               ),
               content: Text("Something went wrong",
-                  style: Theme.of(context).textTheme.titleMedium),
+                  style: Theme.of(context).textTheme.titleSmall),
               actions: [
                 ElevatedButton(
                   onPressed: () {
                     onTap();
-                    // Navigator.pop(context);
+                    Navigator.pop(context);
                   },
-                  child: Text("Go to home",
+                  child: Text("Back Home",
                       style: Theme.of(context).textTheme.titleSmall),
                 ),
               ],

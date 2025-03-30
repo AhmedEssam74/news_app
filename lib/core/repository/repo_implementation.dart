@@ -13,7 +13,6 @@ class HomeRepoImpl implements HomeRepo {
       "/v2/everything",
       {
         "apiKey": ConstantUrl.apiKey,
-        // "sources": sourcesResponse?.sources?[selectedIndex].id ?? "",
         "sources": sourceId,
       },
     );
@@ -33,5 +32,22 @@ class HomeRepoImpl implements HomeRepo {
     var json = await jsonDecode(response.body);
     SourcesResponse sourcesResponse = SourcesResponse.fromJson(json);
     return sourcesResponse;
+  }
+
+  @override
+  Future<NewsResponse> getSearchData(String itemName) async {
+    Uri baseUrl = Uri.https(
+      ConstantUrl.baseUrl,
+      "/v2/everything",
+      {
+        "apiKey": ConstantUrl.apiKey,
+        "q": itemName,
+        "sources": itemName.isEmpty ? "abc-news" : null,
+      },
+    );
+    http.Response response = await http.get(baseUrl);
+    var json = await jsonDecode(response.body);
+    NewsResponse newResponse = NewsResponse.fromJson(json);
+    return newResponse;
   }
 }

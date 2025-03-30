@@ -39,10 +39,9 @@ class HomeCubit extends Cubit<HomeStates> {
       emit(GetNewsDataLoadingState());
       newResponse = await repo
           .getNewsData(sourcesResponse?.sources?[selectedIndex].id ?? "");
-      // if (newResponse!.articles!.isEmpty) {
-      //   emit(GetNewsDataEmptyState());
-      // } else
-      if (newResponse!.status == "ok") {
+      if (newResponse!.articles!.isEmpty) {
+        emit(GetNewsDataEmptyState());
+      } else if (newResponse!.status == "ok") {
         emit(GetNewsDataSuccessState());
       } else {
         emit(GetNewsDataErrorState(newResponse!.message ?? ""));
@@ -58,6 +57,22 @@ class HomeCubit extends Cubit<HomeStates> {
       await launchUrl(uri, mode: LaunchMode.externalApplication);
     } else {
       throw "Could not launch $url";
+    }
+  }
+
+  Future<void> getSearchData(searchItem) async {
+    try {
+      emit(GetSearchDataLoadingState());
+      newResponse = await repo.getSearchData(searchItem);
+      if (newResponse!.status == "ok") {
+        emit(GetSearchDataSuccessState());
+      } else {
+        emit(GetSearchDataErrorState(newResponse!.message ?? ""));
+        print(newResponse!.message);
+      }
+    } catch (error) {
+      emit(GetSearchDataErrorState(newResponse!.message ?? ""));
+      print(newResponse!.message);
     }
   }
 }
