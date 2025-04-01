@@ -27,3 +27,10 @@ class GetNewsDataErrorState extends HomeStates {
 class GetNewsDataEmptyState extends HomeStates {}
 
 class ChangSelectedTabState extends HomeStates {}
+class GetSearchDataLoadingState extends HomeStates {}
+class GetSearchDataSuccessState extends HomeStates {}
+class GetSearchDataErrorState extends HomeStates {
+  String? errorMessage;
+
+  GetSearchDataErrorState(this.errorMessage);
+}

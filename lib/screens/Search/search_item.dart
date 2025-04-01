@@ -1,14 +1,19 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:news/core/cubit/cubit.dart';
-import '../models/news_response_model.dart';
+import 'package:news/models/news_response_model.dart';
 
-class NewsItem extends StatelessWidget {
-  final Articles article;
-  // Future<Void>? onSearch ;
+import '../../core/cubit/cubit.dart';
 
-  const NewsItem({super.key, required this.article ,/* this.onSearch*/});
+class SearchItem extends StatelessWidget {
+  Articles article;
+
+  // Future<void> onSearch;
+  SearchItem({
+    super.key,
+    required this.article,
+    /*required this.onSearch*/
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:news/core/cubit/states.dart';
 import 'package:news/core/repository/repository.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../models/news_response_model.dart';
 import '../../models/source_response_model.dart';
 
@@ -23,8 +24,8 @@ class HomeCubit extends Cubit<HomeStates> {
       emit(GetSourceLoadingState());
       sourcesResponse = await repo.getSources(categoryName);
       if (sourcesResponse!.status == "ok") {
-        await getNewsData();
         emit(GetSourceSuccessState());
+        await getNewsData();
       } else {
         emit(GetSourceErrorState());
       }
@@ -38,16 +39,40 @@ class HomeCubit extends Cubit<HomeStates> {
       emit(GetNewsDataLoadingState());
       newResponse = await repo
           .getNewsData(sourcesResponse?.sources?[selectedIndex].id ?? "");
-      // if (newResponse!.articles!.isEmpty) {
-      //   emit(GetNewsDataEmptyState());
-      // } else
-      if (newResponse!.status == "ok") {
+      if (newResponse!.articles!.isEmpty) {
+        emit(GetNewsDataEmptyState());
+      } else if (newResponse!.status == "ok") {
         emit(GetNewsDataSuccessState());
       } else {
         emit(GetNewsDataErrorState(newResponse!.message ?? ""));
       }
     } catch (error) {
       emit(GetNewsDataErrorState(newResponse!.message ?? ""));
+    }
+  }
+
+  static Future<void> openLink(String url) async {
+    final Uri uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    } else {
+      throw "Could not launch $url";
+    }
+  }
+
+  Future<void> getSearchData(searchItem) async {
+    try {
+      emit(GetSearchDataLoadingState());
+      newResponse = await repo.getSearchData(searchItem);
+      if (newResponse!.status == "ok") {
+        emit(GetSearchDataSuccessState());
+      } else {
+        emit(GetSearchDataErrorState(newResponse!.message ?? ""));
+        print(newResponse!.message);
+      }
+    } catch (error) {
+      emit(GetSearchDataErrorState(newResponse!.message ?? ""));
+      print(newResponse!.message);
     }
   }
 }

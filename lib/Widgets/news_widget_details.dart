@@ -30,7 +30,7 @@ class NewsWidgetDetails extends StatelessWidget {
             builder: (context) => AlertDialog(
               title: Text(
                 'Error',
-                style: Theme.of(context).textTheme.titleLarge,
+                style: Theme.of(context).textTheme.titleMedium,
               ),
               content: Text(state.errorMessage ?? "Something went wrong",
                   style: Theme.of(context).textTheme.titleSmall),
@@ -40,7 +40,7 @@ class NewsWidgetDetails extends StatelessWidget {
                     Navigator.pop(context);
                   },
                   child:
-                      Text("OK", style: Theme.of(context).textTheme.titleLarge),
+                      Text("OK", style: Theme.of(context).textTheme.titleSmall),
                 ),
               ],
             ),
@@ -48,40 +48,38 @@ class NewsWidgetDetails extends StatelessWidget {
         } else if (state is GetNewsDataSuccessState) {
           Navigator.pop(context);
         }
-        // else if (state is GetNewsDataEmptyState) {
-        //   showDialog(
-        //     context: context,
-        //     builder: (context) => AlertDialog(
-        //       title: Text(
-        //         'No News Founded',
-        //         style: Theme.of(context).textTheme.titleLarge,
-        //       ),
-        //       actions: [
-        //         ElevatedButton(
-        //           onPressed: () {
-        //             Navigator.pop(context);
-        //           },
-        //           child:
-        //           Text("OK", style: Theme.of(context).textTheme.titleLarge),
-        //         ),
-        //       ],
-        //     ),
-        //   );
-        // }
+        else if (state is GetNewsDataEmptyState) {
+          Column(
+            children: [
+              Text(
+                'No News Founded',
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+            ],
+          );
+          Navigator.pop(context);
+        }
       },
       builder: (context, state) {
         var bloc = BlocProvider.of<HomeCubit>(context);
         var news = bloc.newResponse?.articles ?? [];
-        return ListView.separated(
-            itemBuilder: (context, index) {
-              return NewsItem(
-                article: news[index],
-              );
-            },
-            separatorBuilder: (context, index) => SizedBox(
-                  height: 16.h,
+        return /*news.isEmpty
+            ? Center(
+                child: Text(
+                  "No News Founded",
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
-            itemCount: news.length);
+              )
+            :*/ ListView.separated(
+                itemBuilder: (context, index) {
+                  return NewsItem(
+                    article: news[index],
+                  );
+                },
+                separatorBuilder: (context, index) => SizedBox(
+                      height: 16.h,
+                    ),
+                itemCount: news.length);
       },
     );
   }
