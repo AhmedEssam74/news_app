@@ -16,7 +16,6 @@ class DarkTheme extends BaseTheme {
   // TODO: implement backGroundColor
   Color get backGroundColor => const Color(0xff636262);
 
-
   @override
   ThemeData get themeData => ThemeData(
         primaryColorLight: primaryColor,
@@ -35,6 +34,14 @@ class DarkTheme extends BaseTheme {
         ),
         drawerTheme: DrawerThemeData(
           width: 269.w,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: primaryColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+          ),
         ),
         tabBarTheme: TabBarTheme(
           dividerColor: Colors.transparent,
@@ -159,6 +166,4 @@ class DarkTheme extends BaseTheme {
           contentPadding: EdgeInsets.symmetric(vertical: 20.h),
         ),
       );
-
-
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:news/core/firebase/firebase_maneger.dart';
 import 'package:news/core/provider/theme_provider.dart';
 import 'package:news/core/routes/page_name_route.dart';
 import 'package:provider/provider.dart';
@@ -117,18 +118,28 @@ class AppDrawer extends StatelessWidget {
                     height: 24.h,
                   ),
                   // language row
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.language,
-                        color: Theme.of(context).textTheme.bodyMedium?.color,
-                      ),
-                      SizedBox(width: 8.0.w),
-                      Text(
-                        'Language',
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                    ],
+                  GestureDetector(
+                    onTap: () {
+                      FirebaseManager.signOutUser();
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        PageRouteName.login,
+                            (context) => false,
+                      );
+                    },
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.exit_to_app,
+                          color: Theme.of(context).textTheme.bodyMedium?.color,
+                        ),
+                        SizedBox(width: 8.0.w),
+                        Text(
+                          'Log Out',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(
                     height: 24.h,
