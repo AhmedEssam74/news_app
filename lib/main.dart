@@ -1,18 +1,23 @@
 import 'package:bloc/bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news/core/provider/theme_provider.dart';
 import 'package:news/core/routes/app_routes.dart';
 import 'package:news/core/routes/page_name_route.dart';
-import 'package:news/screens/home/home_screen.dart';
+import 'package:news/firebase_options.dart';
 import 'package:news/theme/base_theme.dart';
 import 'package:news/theme/dark_theme.dart';
 import 'package:news/theme/light_theme.dart';
 import 'package:provider/provider.dart';
 import 'core/cubit/cubit_observer.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(
     ChangeNotifierProvider(
       create: (context) => ThemeProvider(),
