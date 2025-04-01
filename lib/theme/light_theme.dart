@@ -32,6 +32,14 @@ class LightTheme extends BaseTheme {
         drawerTheme: DrawerThemeData(
           width: 269.w,
         ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: primaryColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+      ),
+    ),
         tabBarTheme: TabBarTheme(
           dividerColor: Colors.transparent,
           labelStyle: GoogleFonts.aBeeZee(
