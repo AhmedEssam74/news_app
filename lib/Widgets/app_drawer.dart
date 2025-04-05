@@ -109,30 +109,30 @@ class AppDrawer extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Divider(
-                    height: 2.h,
-                    color: Theme.of(context).textTheme.bodyMedium?.color,
-                  ),
-                  SizedBox(
-                    height: 24.h,
-                  ),
-                  // language row
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.language,
-                        color: Theme.of(context).textTheme.bodyMedium?.color,
-                      ),
-                      SizedBox(width: 8.0.w),
-                      Text(
-                        'Language',
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 24.h,
-                  ),
+                  // Divider(
+                  //   height: 2.h,
+                  //   color: Theme.of(context).textTheme.bodyMedium?.color,
+                  // ),
+                  // SizedBox(
+                  //   height: 24.h,
+                  // ),
+                  // // language row
+                  // Row(
+                  //   children: [
+                  //     Icon(
+                  //       Icons.language,
+                  //       color: Theme.of(context).textTheme.bodyMedium?.color,
+                  //     ),
+                  //     SizedBox(width: 8.0.w),
+                  //     Text(
+                  //       'Language',
+                  //       style: Theme.of(context).textTheme.bodyMedium,
+                  //     ),
+                  //   ],
+                  // ),
+                  // SizedBox(
+                  //   height: 24.h,
+                  // ),
                 ],
               ),
             ),

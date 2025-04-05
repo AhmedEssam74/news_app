@@ -5,9 +5,9 @@ import 'package:news/screens/home/category_item.dart';
 class CategoriesScreen extends StatelessWidget {
   final Function onClickedCategory;
 
-  CategoriesScreen({super.key, required this.onClickedCategory});
+   CategoriesScreen({super.key, required this.onClickedCategory});
 
-  List<String> categories = [
+  final List<String> categories = [
     "general",
     "business",
     "sports",
@@ -19,6 +19,7 @@ class CategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // var provider = Provider.of<ThemeProvider>(context);
     return Padding(
       padding: EdgeInsets.all(16.0.r),
       child: Scaffold(

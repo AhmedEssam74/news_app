@@ -53,6 +53,7 @@ class NewsItem extends StatelessWidget {
                       .textTheme
                       .titleSmall
                       ?.copyWith(color: Theme.of(context).cardColor),
+                  maxLines: 4,
                 ),
                 SizedBox(
                   height: 16.h,

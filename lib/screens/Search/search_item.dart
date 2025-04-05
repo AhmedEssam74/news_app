@@ -6,14 +6,8 @@ import 'package:news/models/news_response_model.dart';
 import '../../core/cubit/cubit.dart';
 
 class SearchItem extends StatelessWidget {
-  Articles article;
-
-  // Future<void> onSearch;
-  SearchItem({
-    super.key,
-    required this.article,
-    /*required this.onSearch*/
-  });
+  final Articles article;
+  const SearchItem({super.key, required this.article});
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +52,7 @@ class SearchItem extends StatelessWidget {
                       .textTheme
                       .titleSmall
                       ?.copyWith(color: Theme.of(context).cardColor),
+                  maxLines: 4,
                 ),
                 SizedBox(
                   height: 16.h,
